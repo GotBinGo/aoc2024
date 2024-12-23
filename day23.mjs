@@ -43,14 +43,16 @@ function conned(a, b) {
     var res = list.filter(x => x[0] == a && x[1] == b).length || list.filter(x => x[0] == b && x[1] == a).length
     cd[a+'-'+b] = res;
     cd[b+'-'+a] = res;
+    return res
 }
 
 var res = [];
 for(var i = 0; i < all.length; i++) {
     console.log(all.length, i);
     for(var j = i; j < all.length; j++) {
+        if(conned(all[i], all[j]))
         for(var k = j; k < all.length; k++) {
-            if(conned(all[i], all[j]) && conned(all[i], all[k]) && conned(all[j], all[k])) {
+            if(conned(all[i], all[k]) && conned(all[j], all[k])) {
                 res.push([all[i], all[j], all[k]])
             }
         }
